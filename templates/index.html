@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>AES Web Encryptor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 🔐 AES Web Encryption - Encrypt a secret message</h1>
+
+    <input type="text" id="clave" placeholder="Enter your password">
+    
+    <textarea id="mensaje" placeholder="Write your message to encrypt or decrypt..."></textarea>
+    
+    <div class="botones">
+      <button onclick="cifrar()">encrypt text</button>
+      <button onclick="descifrar()">decrypt text</button>
+    </div>
+
+    <textarea id="resultado" placeholder="Result..." readonly></textarea>
+  </div>
+
+  <script>
+    async function cifrar() {
+      const mensaje = document.getElementById('mensaje').value;
+      const clave = document.getElementById('clave').value;
+      const res = await fetch('/cifrar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje, clave })
+      });
+      const data = await res.json();
+      document.getElementById('resultado').value = data.resultado || data.error;
+    }
+
+    async function descifrar() {
+      const mensaje = document.getElementById('mensaje').value;
+      const clave = document.getElementById('clave').value;
+      const res = await fetch('/descifrar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje, clave })
+      });
+      const data = await res.json();
+      document.getElementById('resultado').value = data.resultado || data.error;
+    }
+  </script>
+
+  <footer class="footer">
+  🔍 Created  by <strong>Dcrypto Rodríguez</strong> 🕶️
+</footer>
+
+<script>
+  async function cifrar() {
+    const mensaje = document.getElementById('mensaje').value;
+    const clave = document.getElementById('clave').value;
+    const res = await fetch('/cifrar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mensaje, clave })
+    });
+    const data = await res.json();
+    document.getElementById('resultado').value = data.resultado || data.error;
+
+    // Borrar el contenido después de 45 segundos
+    if (!data.error) {
+      setTimeout(() => {
+        document.getElementById('clave').value = '';
+        document.getElementById('mensaje').value = '';
+        document.getElementById('resultado').value = '';
+      }, 45000);
+    }
+  }
+
+  async function descifrar() {
+    const mensaje = document.getElementById('mensaje').value;
+    const clave = document.getElementById('clave').value;
+    const res = await fetch('/descifrar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mensaje, clave })
+    });
+    const data = await res.json();
+    document.getElementById('resultado').value = data.resultado || data.error;
+
+    // Borrar el contenido después de 45 segundos
+    if (!data.error) {
+      setTimeout(() => {
+        document.getElementById('clave').value = '';
+        document.getElementById('mensaje').value = '';
+        document.getElementById('resultado').value = '';
+      }, 45000);
+    }
+  }
+</script>
+
+
+</body>
+</html>

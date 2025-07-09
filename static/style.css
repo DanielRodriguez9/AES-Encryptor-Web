@@ -1,0 +1,66 @@
+body {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #0b0f1a, #1c223a);
+  color: #f2f2f2;
+  padding: 30px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px; /* aumentamos padding horizontal */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,255,204,0.1);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  backdrop-filter: blur(6px);
+  box-sizing: border-box; /* importante para que el padding no desborde */
+}
+
+
+input, textarea {
+  display: block;
+  width: 100%;
+  margin: 15px auto;
+  padding: 15px;
+  font-size: 1em;
+  background: #121212;
+  border: 1px solid #00ffc3;
+  color: #00ffc3;
+  border-radius: 6px; /* suaviza esquinas */
+  box-sizing: border-box;
+}
+
+
+textarea#resultado {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  background-color: #101010;
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
+}
+
+button {
+  background-color: #00ffc3;
+  color: #0b0f1a;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #01c9a7;
+}
+
+.botones {
+  text-align: center;
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 0.9em;
+}
